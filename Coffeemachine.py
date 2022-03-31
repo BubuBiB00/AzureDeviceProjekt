@@ -6,6 +6,9 @@ connection_string = "HostName=iot3bhwii22-dz.azure-devices.net;DeviceId=Notebook
 client = IoTHubDeviceClient.create_from_connection_string(connection_string)
 
 
+def test():
+    pass
+
 def main(): 
 
     try: 
