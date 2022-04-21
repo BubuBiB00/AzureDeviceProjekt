@@ -15,7 +15,7 @@ def coffeemachines():
     coffeemachine_coffee_num = 0
 
     coffeemachine_msg = [coffeemachine_id[randrange(0,len(coffeemachine_id))],coffeemachine_coffee[randrange(0,len(coffeemachine_coffee))],coffeemachine_coffee_num]
-
+    print(coffeemachine_msg)
     return coffeemachine_msg
 
 
@@ -23,12 +23,9 @@ def main():
     global coffeemachine_coffee_num
 
     try: 
-        registry_manager = IoTHubRegistryManager(CONNECTION_STRING)
+        registry_manager = IoTHubRegistryManager("HostName=iot3bhwii22-dz.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=2lJeWgm6IkzOHFlaeM3/4pQH+sX3SMy1sOM9Ao5XMd0=")
 
         data = coffeemachines()
-        if coffeemachine_coffee_num == 50:
-            coffeemachine_coffee_num = 0
-            
         registry_manager.send_c2d_message(DEVICE_ID, data)
 
     except KeyboardInterrupt: 
