@@ -27,7 +27,7 @@ def main():
 
         data = coffeemachines()
         registry_manager.send_c2d_message(DEVICE_ID, data)
-
+        print("Message sent!")
     except KeyboardInterrupt: 
         print("Stopped!")
         
