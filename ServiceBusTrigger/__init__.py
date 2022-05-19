@@ -1,18 +1,10 @@
-#import logging
-
-#import azure.functions as func
-
-
-#def main(msg: func.ServiceBusMessage):
-#    logging.info('Python ServiceBus queue trigger processed message: %s',
-#                 msg.get_body().decode('utf-8'))
-
 import logging
 import json
+import uuid
 
 import azure.functions as func
 
-def main(msg: func.QueueMessage):
+def main(msg: func.QueueMessage,req: func.QueueMessage, message: func.Out[str]):
     logging.info('Python queue trigger function processed a queue item.')
 
     result = json.dumps({
@@ -29,3 +21,13 @@ def main(msg: func.QueueMessage):
     })
 
     logging.info(result)
+
+    rowKey = str(uuid.uuid4())
+
+    data = {
+        "Name": "Output binding message",
+        "PartitionKey": "message",
+        "RowKey": rowKey
+    }
+    
+    message.set(json.dumps(data))

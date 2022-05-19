@@ -1,5 +1,4 @@
 from azure.iot.device import IoTHubDeviceClient
-from azure.iot.hub import IoTHubRegistryManager
 from random import randrange
 import json
 
