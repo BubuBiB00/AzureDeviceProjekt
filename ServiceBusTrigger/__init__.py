@@ -10,7 +10,9 @@ def main(msg: func.ServiceBusMessage):
     message = msg.get_body().decode('utf-8')
     
     logging.info(message)
+    # such das: create entity in azure tables with python
 
+    
     #result = json.dumps({
     #    u'PartitionKey': Kaffemachine,
     #    u'RowKey': PRODUCT_ID,
