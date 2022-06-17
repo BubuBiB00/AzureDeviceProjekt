@@ -1,5 +1,6 @@
 from azure.iot.device import IoTHubDeviceClient
-from random import randrange
+from random import randint
+from Kaffeemachinendaten import KaffeeMaschineKlasse
 import json
 
 CONNECTION_STRING = "HostName=iot3bhwii22-dz.azure-devices.net;DeviceId=Notebook-dz;SharedAccessKey=cGXDrnQ85YU9fNj1zog8r7Q7Da6avBAlqpsz0gnaFBs="
@@ -11,14 +12,12 @@ def coffeemachines():
     coffeemachine_id = [0, 1, 2, 3, 4]
     coffeemachine_coffee = ["Schwarz", "Capuccino",
                             "Grosser Brauner", "Kleiner Brauner", "Verlaengerter"]
+    KaffeeMaschine = KaffeeMaschineKlasse(
+        coffeemachine_id[randint(0, 4)], coffeemachine_coffee[randint(0, 4)])
+    print(KaffeeMaschine.CMachineID, KaffeeMaschine.CSorte)
+    kaffee_daten_json = json.dumps(KaffeeMaschine.__dict__)
 
-    coffeemachine_msg = ""+str(coffeemachine_id[randrange(0, len(coffeemachine_id))])+","+str(
-        coffeemachine_coffee[randrange(0, len(coffeemachine_coffee))])
-
-    coffemachine_json = json.dumps(coffeemachine_msg)
-
-    print(coffemachine_json)
-    return coffemachine_json
+    return kaffee_daten_json
 
 
 def main():
