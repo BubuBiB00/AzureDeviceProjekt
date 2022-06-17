@@ -11,9 +11,8 @@ def main(msg: func.ServiceBusMessage):
 
     connection_string = "HostName=iot3bhwii22-dz.azure-devices.net;DeviceId=Notebook-dz;SharedAccessKey=cGXDrnQ85YU9fNj1zog8r7Q7Da6avBAlqpsz0gnaFBs="
     table_service_client = TableServiceClient.from_connection_string(
-        conn_str="<connection_string>")
-    table_name = "CoffeemachineDataTable"
-    table_client = table_service_client.create_table(table_name=table_name)
+        conn_str="DefaultEndpointsProtocol=https;AccountName=coffeemachinedata;AccountKey=LHaBP5X84VzuZ3bieHiLjv5y3x9cSJAPic6K0qGxpZ2YkKuPUtahoh1fiLf1GWzxdA6n5n+2AJVB4cCUOGGzzw==;EndpointSuffix=core.windows.net")
+    table_name = "coffemachineTable"
 
     my_data_json = msg.get_body().decode('utf-8')
     my_data_string = json.loads(my_data_json)
@@ -26,8 +25,6 @@ def main(msg: func.ServiceBusMessage):
         u'RowKey': Coffee_name
     }
 
-    table_service_client = TableServiceClient.from_connection_string(
-        conn_str="<connection_string>")
     table_client = table_service_client.get_table_client(table_name=table_name)
 
     entity = table_client.create_entity(entity=my_entity)
