@@ -20,6 +20,7 @@ def coffeemachines():
 
     print(coffemachine_json)
     return coffemachine_json
+    
 
 
 def main(): 
